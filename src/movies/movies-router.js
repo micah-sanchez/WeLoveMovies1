@@ -8,4 +8,8 @@ router.route("/")
 router.route("/:movieId")
     .get(controller.read).all(methodNotAllowed)
 
+router.route("/:movieId/thaters")
+
+router.route("./movies/:movieId/reivews")
+
 module.exports = router;
