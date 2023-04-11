@@ -9,7 +9,7 @@ exports.up = function(knex) {
 // - `state`: (String) The state in which the theater is located.
 // - `zip`: (String) The zip in which the theater is located.
 
-    return knex.schema.createTable("theatres", (table) => {
+    return knex.schema.createTable("theaters", (table) => {
         table.increments("theater_id").primary(); // Sets supplier_id as the primary key
         table.string("name");
         table.string("address_line_1");
@@ -22,5 +22,5 @@ exports.up = function(knex) {
 };
 
 exports.down = function(knex) {
-    return knex.schema.dropTable("theatres");
+    return knex.schema.dropTable("theaters");
 };
