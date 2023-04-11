@@ -1,7 +1,7 @@
 const knex = require("../db/connection");
 
 function list() {
-    return knex("comments")
+    return knex("movies")
       .select("*")
   }
 
