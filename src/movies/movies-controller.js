@@ -21,13 +21,10 @@ function read(req, res, next) {
 
 async function list(req, res, next) {
   const isTrue = req.query
-  console.log("hello!")
   if (isTrue.is_showing === "true") {
-    console.log("hits true if")
     const data = await service.listShowingMovies()
     res.json({ data })
   } else {
-    console.log("hits else")
     const data = await service.listAll();
     res.json({ data });
   }
