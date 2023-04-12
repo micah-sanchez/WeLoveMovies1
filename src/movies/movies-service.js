@@ -8,15 +8,22 @@ function listAll() {
 
 function listShowingMovies() {
   return knex("movies as m")
-    .join("movies_theatres as mt")
-    .select("m.*")
-    .where("mt.is_showing", "=", "true")
+    .join("movies_theaters as mt", "mt.movie_id", "m.movie_id")
+    .distinct("m.title"
+    , "m.runtime_in_minutes "
+    , "m.rating" 
+    , "m.description" 
+    , "m.image_url" 
+    , "m.created_at" 
+    , "m.updated_at")
+    .where("mt.is_showing", true)
 }
 
 function read(movieId) {
   return knex("movies")
   .select("*")
   .where({ "movie_id": movieId })
+  .first()
 }
 
 function readTheaters(movieId) {
@@ -35,13 +42,11 @@ const addCritics = mapProperties({
 })
 
 function readReviews(movieId) {
-  return knex("movies as m")
-  .join("reviews as r", "r.movie_id", "m.movie_id")
+  return knex("reviews as r")
   .join("critics as c", "c.critic_id", "r.critic_id")
   .select("r.*", "c.*")
   .where({"r.movie_id": movieId})
-  .first()
-  .then(addCritics)
+  .then(reviews => reviews.map(review => addCritics(review)))
 }
 
 module.exports = {
