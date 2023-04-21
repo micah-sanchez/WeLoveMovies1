@@ -18,15 +18,6 @@ function listTheaters() {
         .join("movies_theaters as mt", "mt.theater_id", "t.theater_id")
         .join("movies as m", "m.movie_id", "mt.movie_id")
         .select("t.*", "m.*")
-        // .distinct("t.theater_id",
-        // "t.name",
-        // "t.address_line_1",
-        // "t.address_line_2",
-        // "t.city",
-        // "t.state",
-        // "t.zip",
-        // "t.created_at",
-        // "t.updated_at")
         .then(reduceMovies)
 }
 
