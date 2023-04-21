@@ -8,8 +8,8 @@ router.route("/")
 router.route("/:movieId")
     .get(controller.read).all(methodNotAllowed)
 
-router.route("/:movieId/theaters").get(controller.readTheaters)
+router.route("/:movieId/theaters").get(controller.readTheaters).all(methodNotAllowed)
 
-router.route("/:movieId/reviews").get(controller.readReviews)
+router.route("/:movieId/reviews").get(controller.readReviews).all(methodNotAllowed)
 
 module.exports = router;
